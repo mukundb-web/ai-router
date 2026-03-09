@@ -1,0 +1,18 @@
+export default function handler(req,res){
+
+const {prompt}=req.body
+
+let model="General AI"
+
+if(prompt.toLowerCase().includes("code"))
+model="Coding AI"
+
+if(prompt.toLowerCase().includes("image"))
+model="Image AI"
+
+res.status(200).json({
+model:model,
+response:"Example response for: "+prompt
+})
+
+}

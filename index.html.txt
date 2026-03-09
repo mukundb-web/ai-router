@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Universal AI Router</title>
+</head>
+
+<body style="font-family:Arial;text-align:center;margin-top:60px">
+
+<h1>Universal AI</h1>
+
+<textarea id="prompt" rows="6" cols="50" placeholder="Ask anything..."></textarea>
+
+<br><br>
+
+<button onclick="sendPrompt()">Ask</button>
+
+<pre id="response"></pre>
+
+<script>
+
+async function sendPrompt(){
+
+let prompt=document.getElementById("prompt").value
+
+let res=await fetch("/api/ask",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({prompt})
+})
+
+let data=await res.json()
+
+document.getElementById("response").innerText=
+"Model used: "+data.model+"\n\n"+data.response
+
+}
+
+</script>
+
+</body>
+</html>
